@@ -1,4 +1,6 @@
 const rps = ['Rock', 'Paper', 'Scissors'];
+let playerSelection;
+
 
 function getComputerChoice() {
     return Math.floor(Math.random() * 3);
@@ -19,11 +21,36 @@ function capitalization(str) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
-let playerSelection;
+function game() {
+    let playerScore = 0, computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let result = playRound(playerSelection, getComputerChoice());
+        if (result.includes("win")) {
+            playerScore += 1;
+        }
+        else if (result.includes("lose")) {
+            computerScore += 1;
+        }
+        console.log(result);
+        console.log("player score: " + playerScore + ", computer score: " + computerScore);
+        
+        playerSelection = null;
+        while (!rps.includes(playerSelection)) {
+            playerSelection = capitalization(prompt("Rock, paper or scissors?"));
+        }
+    }
+
+    if (playerScore === computerScore) {
+        return("Draw!");
+    }
+    else return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
+}
+
 
 while (!rps.includes(playerSelection)) {
     playerSelection = capitalization(prompt("Rock, paper or scissors?"));
 }
 
 
-playRound(playerSelection, getComputerChoice());
+console.log(game());
