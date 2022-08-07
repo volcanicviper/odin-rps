@@ -1,9 +1,19 @@
 const rps = ['Rock', 'Paper', 'Scissors'];
 let playerSelection;
 
+function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+}
 
 function getComputerChoice() {
     return Math.floor(Math.random() * 3);
+}
+
+function getPlayerChoice(str) {
+    while (!rps.includes(str)) {
+        str = capitalize(prompt("Rock, paper or scissors?"));
+    }
+    return str;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -17,15 +27,11 @@ function playRound(playerSelection, computerSelection) {
     else return (`You win! ${rps[selectionNum]} beats ${rps[computerSelection]}`);
 }
 
-function capitalization(str) {
-    return str[0].toUpperCase() + str.slice(1).toLowerCase();
-}
-
 function game() {
     let playerScore = 0, computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
-        let result = playRound(playerSelection, getComputerChoice());
+        let result = playRound(getPlayerChoice(), getComputerChoice());
         if (result.includes("win")) {
             playerScore += 1;
         }
@@ -34,11 +40,6 @@ function game() {
         }
         console.log(result);
         console.log("player score: " + playerScore + ", computer score: " + computerScore);
-        
-        playerSelection = null;
-        while (!rps.includes(playerSelection)) {
-            playerSelection = capitalization(prompt("Rock, paper or scissors?"));
-        }
     }
 
     if (playerScore === computerScore) {
@@ -46,11 +47,5 @@ function game() {
     }
     else return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
 }
-
-
-while (!rps.includes(playerSelection)) {
-    playerSelection = capitalization(prompt("Rock, paper or scissors?"));
-}
-
 
 console.log(game());
