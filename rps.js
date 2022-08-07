@@ -5,10 +5,13 @@ function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
+// Returns random number between 0 and 2, representing an element from the rps array
 function getComputerChoice() {
     return Math.floor(Math.random() * 3);
 }
 
+ // Simple input validity check
+ // While the player's capitalized input doesn't match anything in the rps array, keep prompting
 function getPlayerChoice(str) {
     while (!rps.includes(str)) {
         str = capitalize(prompt("Rock, paper or scissors?"));
@@ -16,6 +19,8 @@ function getPlayerChoice(str) {
     return str;
 }
 
+// Convert the player's choice into a number representing the choice's index in the rps array
+// Afterwards, compare it with the number representing the computer's choice
 function playRound(playerSelection, computerSelection) {
     let selectionNum = rps.indexOf(playerSelection);
     if (selectionNum === computerSelection) {
