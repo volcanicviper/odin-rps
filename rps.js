@@ -24,7 +24,7 @@ function playRound(playerSelection, computerSelection) {
     else if (selectionNum === computerSelection - 1) {
         return(`You lose! ${rps[computerSelection]} beats ${rps[selectionNum]}`);
     }
-    else return (`You win! ${rps[selectionNum]} beats ${rps[computerSelection]}`);
+    return (`You win! ${rps[selectionNum]} beats ${rps[computerSelection]}`);
 }
 
 function game() {
@@ -45,7 +45,7 @@ function game() {
     if (playerScore === computerScore) {
         return("Draw!");
     }
-    else return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
+    return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
 }
 
 console.log(game());
