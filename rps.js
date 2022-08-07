@@ -1,18 +1,29 @@
-const rps = ['rock', 'paper', 'scissors'];
+const rps = ['Rock', 'Paper', 'Scissors'];
 
 function getComputerChoice() {
-    return rps[Math.floor(Math.random() * 3)]; // pick num from 0 to 2 then print string from array
+    return Math.floor(Math.random() * 3);
 }
 
 function playRound(playerSelection, computerSelection) {
+    let selectionNum = rps.indexOf(playerSelection);
+    if (selectionNum === computerSelection) {
+        return("Draw!");
+    }
+    else if (selectionNum === computerSelection - 1) {
+        return(`You lose! ${rps[computerSelection]} beats ${rps[selectionNum]}`);
+    }
+    else return (`You win! ${rps[selectionNum]} beats ${rps[computerSelection]}`);
+}
 
+function capitalization(str) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
 let playerSelection;
 
 while (!rps.includes(playerSelection)) {
-    playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
-}   // convert to lowercase in order to make it work regardless of capitalization
+    playerSelection = capitalization(prompt("Rock, paper or scissors?"));
+}
 
 
 playRound(playerSelection, getComputerChoice());
