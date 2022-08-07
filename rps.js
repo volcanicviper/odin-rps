@@ -8,7 +8,11 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
-                                            /* convert to lowercase in order to make it work
-                                                regardless of capitalization */
+let playerSelection;
+
+while (!rps.includes(playerSelection)) {
+    playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
+}   // convert to lowercase in order to make it work regardless of capitalization
+
+
 playRound(playerSelection, getComputerChoice());
