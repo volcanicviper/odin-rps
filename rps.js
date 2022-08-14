@@ -6,7 +6,8 @@ function capitalize(str) {
 
 // Returns random number between 0 and 2, representing an element from the rps array
 function getComputerChoice() {
-    return Math.floor(Math.random() * 3);
+    const choice = Math.floor(Math.random() * 3);
+    return rps[choice];
 }
 
  // Simple input validity check
@@ -21,17 +22,18 @@ function getPlayerChoice(str) {
 // Convert the player's choice into a number representing the choice's index in the rps array
 // Afterwards, compare it with the number representing the computer's choice
 function playRound(playerSelection, computerSelection) {
-    let selectionNum = rps.indexOf(playerSelection);
-    if (selectionNum === computerSelection) {
+    let playerNum = rps.indexOf(playerSelection);
+    let computerNum = rps.indexOf(computerSelection);
+    if (playerNum === computerNum) {
         return("Draw!");
     }
-    else if (selectionNum === computerSelection - 1) {
-        return(`You lose! ${rps[computerSelection]} beats ${rps[selectionNum]}`);
+    else if (playerNum === computerNum - 1) {
+        return(`You lose! ${computerSelection} beats ${playerSelection}!`);
     }
-    return (`You win! ${rps[selectionNum]} beats ${rps[computerSelection]}`);
+    return(`You win! ${playerSelection} beats ${computerSelection}!`);
 }
 
-function game() {
+/* function game() {
     let playerScore = 0, computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
@@ -50,6 +52,8 @@ function game() {
         return("Draw!");
     }
     return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
-}
+} */
 
-console.log(game());
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", function() { playRound(btn.id, getComputerChoice()) });
