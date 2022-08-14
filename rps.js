@@ -42,9 +42,11 @@ function game(playerSelection) {
         if (playerScore === 5) {
             scoreDisplay.textContent = "The player has 5 points! You win!";
         }
-        else scoreDisplay.textContent = "The computer has 5 points! You lose!";
-        playerScore = 0;
-        computerScore = 0;
+        else {
+            scoreDisplay.textContent = "The computer has 5 points! You lose!";
+        }
+        buttons.style.display = "none";
+        scoreDisplay.textContent += " Refresh the page to play again.";
     }
     else {
         scoreDisplay.textContent = `player score: ${playerScore}, computer score: ${computerScore}`;
@@ -57,5 +59,3 @@ buttons.addEventListener("click", function(e) {
         game(e.target.id);
     }
 });
-
-
