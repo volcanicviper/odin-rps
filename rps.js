@@ -10,17 +10,6 @@ function getComputerChoice() {
     return rps[choice];
 }
 
- // Simple input validity check
- // While the player's capitalized input doesn't match anything in the rps array, keep prompting
-function getPlayerChoice(str) {
-    while (!rps.includes(str)) {
-        str = capitalize(prompt("Rock, paper or scissors?"));
-    }
-    return str;
-}
-
-// Convert the player's choice into a number representing the choice's index in the rps array
-// Afterwards, compare it with the number representing the computer's choice
 function playRound(playerSelection, computerSelection) {
     let playerNum = rps.indexOf(playerSelection);
     let computerNum = rps.indexOf(computerSelection);
