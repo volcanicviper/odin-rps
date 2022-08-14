@@ -43,6 +43,12 @@ function playRound(playerSelection, computerSelection) {
     return(playerScore > computerScore ? "The player wins!" : "The computer wins!");
 } */
 
+const container = document.querySelector('#results');
+const result = document.createElement('p');
 const btn = document.querySelector(".btn");
+btn.addEventListener("click", function() { 
+    result.textContent = playRound(btn.id, getComputerChoice())
+});
+container.appendChild(result);
 
-btn.addEventListener("click", function() { playRound(btn.id, getComputerChoice()) });
+
